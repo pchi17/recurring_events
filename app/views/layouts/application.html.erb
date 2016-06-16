@@ -7,8 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+      <%= link_to "Recurring Events", root_path, id: 'logo' %>
+      <ul class="nav nav-pills navbar-right">
+        <li><%= link_to '+ Add New Recurring Event', new_recurring_event_path %></li>  
+      </ul>
+    </div>
+  </header>
 
-<%= yield %>
-
+  <div class="container">
+    <div class="row">
+      <noscript>
+        <div class="alert alert-danger">
+          We can do a lot better with JavaScript enabled ...
+        </div>
+      </noscript>
+      <div class="col-md-12">
+        <% flash.each do |type, msg| %>
+          <div class="alert alert-<%= type %>"><%= msg %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

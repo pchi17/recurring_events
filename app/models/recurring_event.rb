@@ -21,6 +21,14 @@ class RecurringEvent < ActiveRecord::Base
   
   after_initialize :set_default_values
   
+  def next_due_date
+    start_date
+  end
+  
+  def next_delivery_date
+    start_date
+  end
+  
   private
     def set_default_values
       self.start_date ||= Time.now
