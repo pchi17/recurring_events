@@ -22,16 +22,40 @@ class RecurringEvent < ActiveRecord::Base
   after_initialize :set_default_values
   
   def next_due_date
-    start_date
+    next_four_event_dates.first.due_date
   end
   
   def next_delivery_date
-    start_date
+    next_four_event_dates.first.delivery_date
+  end
+  
+  def first_calculated_date
+    if day_of_month < start_date.day
+      date = start_date + 1.month
+      EventDate.new(date.year, date.month, day_of_month)
+    else
+      EventDate.new(start_date.year, start_date.month, day_of_month)
+    end
+  end
+  
+  def next_four_event_dates
+    results = []
+    calculated_date = first_calculated_date
+    until results.count == 4
+      dates = EventDates.new(calculated_date, deliver_buffer_days)
+      if dates.due_date > Date.today && dates.due_date > start_date
+        results << dates
+        calculated_date += interval_months.months
+      else
+        calculated_date += 1.month
+      end
+    end
+    results
   end
   
   private
     def set_default_values
-      self.start_date ||= Time.now
+      self.start_date ||= Date.today
       self.interval_months ||= 1
       self.deliver_buffer_days ||= 0
     end

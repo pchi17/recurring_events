@@ -19,6 +19,25 @@
   </tr>
 </table>
 
+<table class="table">
+  <thead>
+    <tr>
+      <td>Calculated Date</td>
+      <td>Delivery Date</td>
+      <td>Due Date</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @recurring_event.next_four_event_dates.each do |dt| %>
+      <tr>
+        <td><%= dt.calculated_date.strftime('%a, %b %d, %Y') %></td>
+        <td><%= dt.delivery_date.strftime('%a, %b %d, %Y') %></td>
+        <td><%= dt.due_date.strftime('%a, %b %d, %Y') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <div class="row">
   <div class="col-md-4">
     <%= link_to 'Show All Recurring Events', recurring_events_path, class: 'btn btn-success btn-block' %>
