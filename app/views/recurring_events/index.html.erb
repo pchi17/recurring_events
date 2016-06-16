@@ -19,8 +19,8 @@
         <td><%= r.next_delivery_date.strftime('%a, %b %d, %Y') %></td>
         <td>
           <%= link_to 'show', recurring_event_path(r), class: 'btn btn-success' %>
-          <%= link_to 'show', edit_recurring_event_path(r), class: 'btn btn-warning' %>
-          <%= link_to 'show', recurring_event_path(r), class: 'btn btn-danger', method: :delete %>
+          <%= link_to 'edit', edit_recurring_event_path(r), class: 'btn btn-warning' %>
+          <%= link_to 'delete', recurring_event_path(r), class: 'btn btn-danger', method: :delete %>
         </td>
       </tr>
     <% end %>

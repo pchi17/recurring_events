@@ -1,0 +1,32 @@
+<h3 class="page-title">New Recurring Event</h3>
+<h4><%= @recurring_event.name %></h6>
+<table class="table">
+  <tr>
+    <td>Start Date</td>
+    <td><%= @recurring_event.start_date.strftime('%a, %b %d, %Y') %></td>
+  </tr>
+  <tr>
+    <td>Number of months between occurrences</td>
+    <td><%= @recurring_event.interval_months %></td>
+  </tr>
+  <tr>
+    <td>Day of Month</td>
+    <td><%= @recurring_event.day_of_month %></td>
+  </tr>
+  <tr>
+    <td>Number of Buffer Days</td>
+    <td><%= @recurring_event.deliver_buffer_days %></td>
+  </tr>
+</table>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= link_to 'Show All Recurring Events', recurring_events_path, class: 'btn btn-success btn-block' %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to 'edit', edit_recurring_event_path(@recurring_event), class: 'btn btn-warning btn-block' %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to 'delete', recurring_event_path(@recurring_event), class: 'btn btn-danger btn-block', method: :delete %>
+  </div>
+</div>
