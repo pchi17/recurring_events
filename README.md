@@ -18,8 +18,9 @@ They must be in the future, relative to whatever the time it is now. But they sh
 In real production code, I would've used the timecop gem.
 
 # Updates
-These are pushed to a separate branch called "bug_fixes"
-1. I realized there is a bug, for example, if an recurring event is to happen on the 31st of every month, the app will crash when trying to scheduled it for June 31st, which does not exist. I fixed this by looking for the closest previous day that is valid, June 30th in this case.
+1. These are pushed to a separate branch called "bug_fixes"
 
-2. I've added checks for dynamic holidays such as Memorial Day (last Monday of May) and Thxgiving (4th Thursday of November). Similar logic can be applied to President's day and all, but I won't have time for that.
+2. I realized there is a bug, for example, if an recurring event is to happen on the 31st of every month, the app will crash when trying to scheduled it for June 31st, which does not exist. I fixed this by looking for the closest previous day that is valid, June 30th in this case.
+
+3. I've added checks for dynamic holidays such as Memorial Day (last Monday of May) and Thxgiving (4th Thursday of November). Similar logic can be applied to President's day and all, but I won't have time for that.
 This still does not solve the problem of a holiday happening on Sunday and the following Monday is comped as a Holiday.
