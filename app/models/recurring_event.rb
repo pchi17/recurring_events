@@ -45,9 +45,9 @@ class RecurringEvent < ActiveRecord::Base
       dates = EventDates.new(calculated_date, deliver_buffer_days)
       if dates.due_date > Date.today && dates.due_date > start_date
         results << dates
-        calculated_date += interval_months.months
+        calculated_date = calculated_date.increment_months(interval_months)
       else
-        calculated_date += 1.month
+        calculated_date = calculated_date.increment_months
       end
     end
     results
