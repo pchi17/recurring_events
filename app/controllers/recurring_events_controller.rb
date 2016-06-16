@@ -1,0 +1,2 @@
+class RecurringEventsController < ApplicationController
+end
