@@ -1,10 +1,10 @@
 # recurring_events
 
 How to run the app from you local environment:
-1. fork and clone this repo.
-2. cd into app's working directory on your local machine.
-3. run `bundle exec rails server`
-4. open your browser and go to `http://localhost:3000/`
+* 1. fork and clone this repo.
+* 2. cd into app's working directory on your local machine.
+* 3. run `bundle exec rails server`
+* 4. open your browser and go to `http://localhost:3000/`
 
 # Some Assumptions I made:
 1. I assume there were only 4 holidays (New Years, Independence Day, Veterans Day, and Christmas Day).
