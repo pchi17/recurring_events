@@ -1,0 +1,28 @@
+<h3 class="page-title">Recurring Events</h3>
+<%= will_paginate @polls %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>Next Due Date</th>
+      <th>Next Delivery Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @recurring_events.each do |r| %>
+      <tr>
+        <td><%= r.name %></td>
+        <td><%= r.start_date.strftime('%a, %b %d, %Y') %></td>
+        <td><%= r.next_due_date.strftime('%a, %b %d, %Y') %></td>
+        <td><%= r.next_delivery_date.strftime('%a, %b %d, %Y') %></td>
+        <td>
+          <%= link_to 'show', recurring_event_path(r), class: 'btn btn-success' %>
+          <%= link_to 'show', edit_recurring_event_path(r), class: 'btn btn-warning' %>
+          <%= link_to 'show', recurring_event_path(r), class: 'btn btn-danger', method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

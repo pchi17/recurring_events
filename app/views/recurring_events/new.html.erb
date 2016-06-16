@@ -1,0 +1,45 @@
+<div class="col-md-8 col-md-offset-2">
+  <h3 class="page-title">New Recurring Event</h3>
+  <hr>
+  <%= form_for @recurring_event, html: { class: 'form-horizontal' } do |f| %>
+    <%= render_error_message(f.object) %>
+    <div class="form-group">
+      <%= f.label :name, class: 'col-md-3 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name', autofocus: true %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :start_date, class: 'col-md-3 control-label' %>
+      <div class="col-md-9">
+        <%= f.date_field :start_date, class: 'form-control', placeholder: 'Start Date' %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :interval_months, 'Frequency in months', class: 'col-md-3 control-label' %>
+      <div class="col-md-9">
+        <%= f.number_field :interval_months, class: 'form-control', min: 1 %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :day_of_month, 'Day of the month', class: 'col-md-3 control-label' %>
+      <div class="col-md-9">
+        <%= f.number_field :day_of_month, class: 'form-control', in: 1..31 %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :deliver_buffer_days, 'Number of Buffer Days', class: 'col-md-3 control-label' %>
+      <div class="col-md-9">
+        <%= f.number_field :deliver_buffer_days, class: 'form-control', min: 0 %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.submit 'Done!', class: 'btn btn-success btn-block' %>
+    </div>
+  <% end %>
+</div>
