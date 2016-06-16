@@ -43,13 +43,43 @@ class EventDate < Date
     saturday? || sunday?
   end
   
+  def is_new_years_day?
+    month == 1 && day == 1
+  end
+  
+  def is_independence_day?
+    month == 7 && day == 4
+  end
+  
+  def is_veterans_day?
+    month == 11 && day == 11
+  end
+  
+  def is_christmas?
+    month == 12 && day == 25
+  end
+  
+  def is_thanksgiving?
+    if month == 11 && thursday?
+      return true if (self - 3.weeks).month == 11
+    end
+    return false
+  end
+  
+  def is_memorial_day?
+    if month == 5 && monday?
+      return true if (self + 1.week).month == 6
+    end
+    return false
+  end
+  
   def is_holiday?
-    # I'm assuming there are only 4 holidays in a year.
-    # New Year, July 4th, Veterans Day, and Christmas Day.
-    return true if month == 1  && day == 1
-    return true if month == 7  && day == 4
-    return true if month == 11 && day == 11
-    return true if month == 12 && day == 25
+    return true if is_new_years_day?
+    return true if is_memorial_day?
+    return true if is_independence_day?
+    return true if is_veterans_day?
+    return true if is_thanksgiving?
+    return true if is_christmas?
     return false
   end
 end
