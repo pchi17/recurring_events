@@ -15,5 +15,27 @@
 require 'rails_helper'
 
 RSpec.describe RecurringEvent, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:recurring_event) }
+  
+  it 'has a valid factory' do
+    expect(subject).to be_valid
+  end
+  
+  describe 'validations' do
+    it { expect(subject).to validate_presence_of :name }
+    it { expect(subject).to validate_length_of(:name).is_at_most(250) }
+    it { expect(subject).to validate_presence_of :start_date }
+    it { expect(subject).to validate_numericality_of(:interval_months).is_greater_than(0) }
+    it { expect(subject).to validate_inclusion_of(:day_of_month).in_range(1..31) }
+    it { expect(subject).to validate_numericality_of(:deliver_buffer_days).is_greater_than_or_equal_to(0) }
+  end
+  
+  describe '#set_default_values' do
+    it 'sets default values when none are passed in' do
+      event = RecurringEvent.new
+      expect(event.start_date).to_not be_nil
+      expect(event.interval_months).to eq(1)
+      expect(event.deliver_buffer_days).to eq(0)
+    end
+  end
 end

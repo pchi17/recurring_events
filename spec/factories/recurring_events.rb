@@ -14,7 +14,10 @@
 
 FactoryGirl.define do
   factory :recurring_event do
-    
+    name                { Faker::Lorem.sentence.slice(0..249) }
+    start_date          { rand(1..10).days.from_now }
+    interval_months     { rand(1..3) }
+    day_of_month        { rand(1..31) }
+    deliver_buffer_days { rand(5) }
   end
-
 end
